@@ -32,22 +32,22 @@ const initialState: SimulationState = {
 };
 
 export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, setState] = useState<SimulationState>(() => {
-    // Initialize SCORM and try to restore state
+  const [state, setState] = useState<SimulationState>(initialState);
+
+  // Initialize SCORM and restore state on mount
+  useEffect(() => {
     scorm.initialize();
     const suspendData = scorm.getSuspendData();
     
     if (suspendData) {
       try {
         const savedState = JSON.parse(suspendData);
-        return savedState;
+        setState(savedState);
       } catch (error) {
         console.error('Failed to parse suspend data:', error);
       }
     }
-    
-    return initialState;
-  });
+  }, []);
 
   // Save progress to SCORM whenever state changes
   useEffect(() => {
