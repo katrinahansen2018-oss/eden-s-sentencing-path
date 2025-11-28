@@ -6,7 +6,7 @@ import { AnalysisPhase } from './AnalysisPhase';
 import { ArgumentPhase } from './ArgumentPhase';
 import { DecisionPhase } from './DecisionPhase';
 import { Progress } from '@/components/ui/progress';
-import { Scale } from 'lucide-react';
+import cpledLogo from '@/assets/cpled-logo.png';
 
 const phaseProgress = {
   start: 0,
@@ -29,9 +29,7 @@ export const SimulationContainer = () => {
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Scale className="w-4 h-4 text-primary" />
-                </div>
+                <img src={cpledLogo} alt="CPLED" className="h-8 w-auto" />
                 <div>
                   <h2 className="font-serif font-semibold text-sm">R. v. Littlecrow</h2>
                   <p className="text-xs text-muted-foreground">Sentencing Simulation</p>

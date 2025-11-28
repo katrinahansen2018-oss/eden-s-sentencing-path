@@ -9,10 +9,11 @@ import { CONTENT_PLACEHOLDERS } from '@/config/simulation-config';
 import { Scale, Award, RotateCcw } from 'lucide-react';
 
 export const DecisionPhase = () => {
-  const { state, calculateFinalScore, advancePhase, submitReflection, resetSimulation } = useSimulation();
+  const { state, calculateFinalScore, submitReflection, resetSimulation } = useSimulation();
   const [finalScore, setFinalScore] = useState(0);
   const [reflectionText, setReflectionText] = useState('');
   const [showReflection, setShowReflection] = useState(false);
+  const [simulationComplete, setSimulationComplete] = useState(false);
 
   useEffect(() => {
     const score = calculateFinalScore();
@@ -34,7 +35,7 @@ export const DecisionPhase = () => {
 
   const handleReflectionSubmit = () => {
     submitReflection(reflectionText);
-    advancePhase('reflection');
+    setSimulationComplete(true);
   };
 
   return (
@@ -134,6 +135,28 @@ export const DecisionPhase = () => {
           >
             Continue to Reflection
           </Button>
+        ) : simulationComplete ? (
+          <Card className="bg-success/10 border-success">
+            <CardContent className="pt-6">
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto">
+                  <Award className="w-8 h-8 text-success" />
+                </div>
+                <h3 className="text-2xl font-serif font-semibold">Simulation Complete!</h3>
+                <p className="text-muted-foreground">
+                  Thank you for completing the R. v. Littlecrow sentencing simulation. Your reflection has been recorded.
+                </p>
+                <Button
+                  onClick={() => resetSimulation()}
+                  variant="outline"
+                  size="lg"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" />
+                  Restart Simulation
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         ) : (
           <Card>
             <CardHeader>
