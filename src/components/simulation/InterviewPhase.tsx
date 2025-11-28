@@ -6,7 +6,8 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useSimulation } from '@/contexts/SimulationContext';
 import { INTERVIEW_QUESTIONS, CONTENT_PLACEHOLDERS } from '@/config/simulation-config';
-import { CheckCircle2, XCircle, Video } from 'lucide-react';
+import { CheckCircle2, XCircle } from 'lucide-react';
+import { VideoPlayer } from './VideoPlayer';
 
 export const InterviewPhase = () => {
   const { recordInterviewChoice, advancePhase } = useSimulation();
@@ -17,6 +18,18 @@ export const InterviewPhase = () => {
 
   const currentQuestion = INTERVIEW_QUESTIONS[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === INTERVIEW_QUESTIONS.length - 1;
+  
+  // Get pause points from questions
+  const pausePoints = INTERVIEW_QUESTIONS.map(q => q.pauseTime);
+  
+  const handlePausePoint = (time: number) => {
+    // Find which question corresponds to this pause time
+    const questionIndex = INTERVIEW_QUESTIONS.findIndex(q => q.pauseTime === time);
+    if (questionIndex !== -1 && questionIndex === currentQuestionIndex) {
+      // Already at the correct question
+      return;
+    }
+  };
 
   const handleSubmitChoice = () => {
     const option = currentQuestion.options.find(opt => opt.id === selectedOption);
@@ -56,25 +69,21 @@ export const InterviewPhase = () => {
 
         <Card className="shadow-medium bg-card/50">
           <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <Video className="w-5 h-5 text-primary" />
-              </div>
-              <CardTitle>Interview Recording</CardTitle>
-            </div>
+            <CardTitle>Interview Recording - Eden Littlecrow</CardTitle>
+            <p className="text-sm text-muted-foreground mt-1">
+              The video will pause at key moments for you to respond
+            </p>
           </CardHeader>
-          <CardContent>
-            <div className="aspect-video bg-muted rounded-lg flex items-center justify-center border-2 border-border">
-              <div className="text-center space-y-3 p-6">
-                <Video className="w-12 h-12 mx-auto text-muted-foreground/50" />
-                <p className="text-sm text-muted-foreground italic max-w-2xl">
-                  {CONTENT_PLACEHOLDERS.clientTranscript}
-                </p>
-                <p className="text-xs text-muted-foreground">[Video placeholder: Eden speaking in interview room]</p>
-              </div>
-            </div>
+          <CardContent className="space-y-4">
+            <VideoPlayer
+              src={CONTENT_PLACEHOLDERS.clientVideoUrl}
+              captionSrc={CONTENT_PLACEHOLDERS.clientCaptions}
+              pausePoints={pausePoints}
+              onPausePoint={handlePausePoint}
+              isInteractionActive={!showFeedback && selectedOption === ''}
+            />
             
-            <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <div className="flex gap-1">
                 {INTERVIEW_QUESTIONS.map((_, idx) => (
                   <div
