@@ -57,7 +57,8 @@ export const CONTENT_PLACEHOLDERS = {
 
 **Your Role:** As Eden's lawyer, you must prepare a sentencing submission that considers s. 718.2(e) and Gladue principles, which require courts to pay particular attention to the circumstances of Indigenous offenders.`,
 
-  clientVideoUrl: "[PLACEHOLDER_CLIENT_VIDEO]",
+  clientVideoUrl: "/placeholder-video.mp4", // Replace with actual video path
+  clientCaptions: "/placeholder-captions.vtt", // Replace with actual caption file path
   clientTranscript: "Eden: Thank you for meeting with me. I... I know I made a mistake. I've been trying to get clean, trying to get my kids back. But sometimes everything just feels too hard. My parents, they went through residential school. I never really understood what that meant until I was older. The way they were with us... they didn't know how to show love. And now I'm worried I'm doing the same thing to my kids.",
 
   judgeScripts: {
