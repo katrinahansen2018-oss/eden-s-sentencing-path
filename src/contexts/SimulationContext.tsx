@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { SimulationState, SimulationPhase, InterviewChoice, FactorCategorization, Badge } from '@/types/simulation';
 import { SIMULATION_CONFIG } from '@/config/simulation-config';
+import { scorm } from '@/lib/scorm';
 
 interface SimulationContextType {
   state: SimulationState;
@@ -31,7 +32,30 @@ const initialState: SimulationState = {
 };
 
 export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [state, setState] = useState<SimulationState>(initialState);
+  const [state, setState] = useState<SimulationState>(() => {
+    // Initialize SCORM and try to restore state
+    scorm.initialize();
+    const suspendData = scorm.getSuspendData();
+    
+    if (suspendData) {
+      try {
+        const savedState = JSON.parse(suspendData);
+        return savedState;
+      } catch (error) {
+        console.error('Failed to parse suspend data:', error);
+      }
+    }
+    
+    return initialState;
+  });
+
+  // Save progress to SCORM whenever state changes
+  useEffect(() => {
+    if (state.currentPhase !== 'start') {
+      const suspendData = JSON.stringify(state);
+      scorm.setSuspendData(suspendData);
+    }
+  }, [state]);
 
   const advancePhase = useCallback((phase: SimulationPhase) => {
     setState(prev => ({ ...prev, currentPhase: phase }));
@@ -76,6 +100,8 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const submitReflection = useCallback((text: string) => {
     setState(prev => ({ ...prev, reflection: text }));
+    // Mark simulation as complete in SCORM
+    scorm.setComplete();
   }, []);
 
   const calculateFinalScore = useCallback((): number => {
@@ -104,13 +130,18 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       };
     });
 
+    const finalScore = Math.round(total);
+
     setState(prev => ({
       ...prev,
-      scores: { ...prev.scores, total: Math.round(total) },
+      scores: { ...prev.scores, total: finalScore },
       badges: earnedBadges,
     }));
 
-    return Math.round(total);
+    // Report score to SCORM
+    scorm.setScore(finalScore);
+
+    return finalScore;
   }, [state.scores]);
 
   const resetSimulation = useCallback(() => {
