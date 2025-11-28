@@ -56,12 +56,18 @@ class ScormService {
     let attempts = 0;
     const maxAttempts = 500;
 
-    while (win.API == null && win.parent != null && win.parent !== win && attempts < maxAttempts) {
-      attempts++;
-      win = win.parent;
-    }
+    try {
+      while (win.API == null && win.parent != null && win.parent !== win && attempts < maxAttempts) {
+        attempts++;
+        win = win.parent;
+      }
 
-    return win.API || null;
+      return win.API || null;
+    } catch (error) {
+      // Cross-origin access blocked - app is not embedded in LMS
+      console.info('SCORM API not accessible (cross-origin restriction). Running in standalone mode.');
+      return null;
+    }
   }
 
   /**
