@@ -8,105 +8,105 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base colors - warm cream and deep navy for professional legal aesthetic */
-    --background: 42 25% 96%;
-    --foreground: 222 47% 11%;
+    /* Base colors - CPLED branding */
+    --background: 0 0% 100%;
+    --foreground: 203 68% 23%;
 
-    /* Card surfaces - slightly elevated warm white */
-    --card: 40 20% 98%;
-    --card-foreground: 222 47% 11%;
+    /* Card surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 203 68% 23%;
 
-    --popover: 40 20% 98%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 203 68% 23%;
 
-    /* Primary - deep professional navy */
-    --primary: 215 25% 27%;
-    --primary-foreground: 42 25% 96%;
+    /* Primary - CPLED Blue */
+    --primary: 203 68% 23%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary - warm earth tone for cultural respect */
-    --secondary: 25 35% 65%;
-    --secondary-foreground: 222 47% 11%;
+    /* Secondary - CPLED Green */
+    --secondary: 81 45% 45%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted - soft neutral */
-    --muted: 42 15% 88%;
-    --muted-foreground: 222 20% 45%;
+    --muted: 203 20% 95%;
+    --muted-foreground: 203 30% 40%;
 
-    /* Accent - warm terra cotta for highlights */
-    --accent: 18 60% 55%;
-    --accent-foreground: 42 25% 96%;
+    /* Accent - CPLED Green for highlights */
+    --accent: 81 45% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    /* Destructive - muted red for errors */
+    /* Destructive - red for errors */
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Success - earthy green */
-    --success: 150 40% 45%;
+    /* Success - CPLED Green */
+    --success: 81 45% 45%;
     --success-foreground: 0 0% 100%;
 
     /* Warning - warm amber */
-    --warning: 38 90% 50%;
-    --warning-foreground: 222 47% 11%;
+    --warning: 35 80% 55%;
+    --warning-foreground: 203 68% 23%;
 
     /* Borders and inputs */
-    --border: 42 20% 85%;
-    --input: 42 20% 90%;
-    --ring: 215 25% 27%;
+    --border: 203 30% 85%;
+    --input: 203 30% 85%;
+    --ring: 203 68% 23%;
 
     --radius: 0.5rem;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(215 25% 27%), hsl(215 30% 35%));
-    --gradient-card: linear-gradient(to bottom, hsl(40 20% 98%), hsl(42 18% 96%));
+    --gradient-hero: linear-gradient(135deg, hsl(203 68% 23%), hsl(203 60% 30%));
+    --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%), hsl(203 20% 98%));
 
     /* Shadows */
-    --shadow-soft: 0 2px 8px hsl(222 47% 11% / 0.08);
-    --shadow-medium: 0 4px 16px hsl(222 47% 11% / 0.12);
+    --shadow-soft: 0 2px 8px rgba(19, 69, 100, 0.08);
+    --shadow-medium: 0 4px 16px rgba(19, 69, 100, 0.12);
 
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-foreground: 203 68% 23%;
+    --sidebar-primary: 203 68% 23%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 81 45% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 203 30% 85%;
+    --sidebar-ring: 203 68% 23%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 42 25% 96%;
-    --card: 222 40% 14%;
-    --card-foreground: 42 25% 96%;
-    --popover: 222 40% 14%;
-    --popover-foreground: 42 25% 96%;
-    --primary: 42 25% 96%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 25 25% 35%;
-    --secondary-foreground: 42 25% 96%;
-    --muted: 222 30% 20%;
-    --muted-foreground: 42 15% 70%;
-    --accent: 18 50% 45%;
-    --accent-foreground: 42 25% 96%;
-    --destructive: 0 65% 45%;
-    --destructive-foreground: 0 0% 100%;
-    --success: 150 35% 40%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 80% 45%;
-    --warning-foreground: 222 47% 11%;
-    --border: 222 30% 25%;
-    --input: 222 30% 20%;
-    --ring: 42 25% 70%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --background: 203 60% 8%;
+    --foreground: 0 0% 95%;
+    --card: 203 50% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 203 50% 12%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 81 45% 45%;
+    --primary-foreground: 203 60% 8%;
+    --secondary: 203 40% 18%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 203 40% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 81 45% 45%;
+    --accent-foreground: 203 60% 8%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 95%;
+    --success: 81 45% 40%;
+    --success-foreground: 0 0% 95%;
+    --warning: 35 75% 50%;
+    --warning-foreground: 203 60% 8%;
+    --border: 203 40% 22%;
+    --input: 203 40% 22%;
+    --ring: 81 45% 45%;
+    --sidebar-background: 203 60% 8%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 81 45% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 203 40% 18%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 203 40% 22%;
+    --sidebar-ring: 81 45% 45%;
   }
 }
 
