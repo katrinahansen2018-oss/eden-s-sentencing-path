@@ -62,9 +62,9 @@ export const CONTENT_PLACEHOLDERS = {
   clientTranscript: "Eden: Thank you for meeting with me. I... I know I made a mistake. I've been trying to get clean, trying to get my kids back. But sometimes everything just feels too hard. My parents, they went through residential school. I never really understood what that meant until I was older. The way they were with us... they didn't know how to show love. And now I'm worried I'm doing the same thing to my kids.",
 
   judgeScripts: {
-    high: "Having reviewed the submissions and considered all relevant factors under s. 718, including the important Gladue principles set out in s. 718.2(e), I am satisfied that defense counsel has presented a thorough and culturally informed analysis. The court recognizes Ms. Littlecrow's background, including intergenerational trauma stemming from her parents' residential school experiences, her efforts toward rehabilitation, and her expressed remorse. While the offense is serious, a conditional sentence order with strict conditions will serve the principles of sentencing while addressing Ms. Littlecrow's rehabilitative needs.",
+    high: "Having reviewed counsel's submissions and considered all relevant factors under s. 718, including the important Gladue principles set out in s. 718.2(e), I am satisfied that the defense has presented a thorough and culturally informed analysis. The court recognizes Ms. Littlecrow's background, including intergenerational trauma stemming from her parents' residential school experiences, her efforts toward rehabilitation, and her expressed remorse. While the offense is serious, a conditional sentence order with strict conditions will serve the principles of sentencing while addressing Ms. Littlecrow's rehabilitative needs.",
     
-    low: "The court has reviewed the submissions. While I note Ms. Littlecrow's Indigenous background, the defense has not adequately addressed the Gladue factors or provided sufficient context regarding how her circumstances should inform sentencing. The offense involved violence and breach of trust. Without a more comprehensive analysis of rehabilitative options and cultural considerations, I am limited in my ability to consider alternatives to incarceration. Ms. Littlecrow will serve a period of incarceration followed by probation."
+    low: "The court has reviewed counsel's submissions. While I note Ms. Littlecrow's Indigenous background, the defense submissions have not adequately addressed the Gladue factors or provided sufficient context regarding how her circumstances should inform sentencing. The offense involved violence and breach of trust. Without a more comprehensive analysis of rehabilitative options and cultural considerations, I am limited in my ability to consider alternatives to incarceration. Ms. Littlecrow will serve a period of incarceration followed by probation."
   },
 
   outcomeSummaries: {
@@ -176,27 +176,27 @@ export const RUBRIC_CRITERIA: RubricCriterion[] = [
     name: "References Gladue Principles",
     keywords: ["gladue", "718.2(e)", "s.718.2(e)", "s. 718.2(e)", "indigenous circumstances"],
     points: 10,
-    feedback: "Successfully referenced Gladue principles, which is essential for any sentencing submission involving an Indigenous offender."
+    feedback: "Successfully referenced Gladue principles in your memo to your principal, which is essential for any sentencing recommendation involving an Indigenous offender."
   },
   {
     id: "legal-provisions",
     name: "Cites Relevant Criminal Code Provisions",
     keywords: ["s.718", "s. 718", "section 718", "sentencing principles", "718.2"],
     points: 10,
-    feedback: "Properly cited relevant Criminal Code sentencing provisions."
+    feedback: "Properly cited relevant Criminal Code sentencing provisions in your recommendations to your principal."
   },
   {
     id: "cultural-context",
     name: "Addresses Cultural and Historical Context",
     keywords: ["residential school", "intergenerational trauma", "colonial", "systemic", "discrimination", "treaty"],
     points: 10,
-    feedback: "Demonstrated understanding of cultural and historical factors affecting Indigenous peoples in Canada."
+    feedback: "Demonstrated understanding of cultural and historical factors affecting Indigenous peoples in Canada in your memo."
   },
   {
     id: "rehabilitation",
     name: "Discusses Rehabilitative Approach",
     keywords: ["rehabilitation", "restorative", "healing", "conditional sentence", "community", "treatment"],
     points: 5,
-    feedback: "Addressed rehabilitation and alternatives to incarceration."
+    feedback: "Addressed rehabilitation and alternatives to incarceration in your recommendations to your principal."
   }
 ];
