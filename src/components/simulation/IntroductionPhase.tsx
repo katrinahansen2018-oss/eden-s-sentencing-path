@@ -34,11 +34,10 @@ export const IntroductionPhase = () => {
             <div className="bg-muted/30 rounded-lg p-4 space-y-3">
               <div className="flex items-start gap-2">
                 <FileText className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <div className="space-y-1">
+              <div className="space-y-1">
                   <p className="font-semibold text-sm">Key Legal Provisions</p>
                   <ul className="text-sm text-foreground/80 space-y-1">
                     <li><span className="font-medium">s. 267(b):</span> Assault causing bodily harm</li>
-                    <li><span className="font-medium">s. 88(1):</span> Breach of probation</li>
                     <li><span className="font-medium">s. 718:</span> Purposes and principles of sentencing</li>
                     <li><span className="font-medium">s. 718.2(e):</span> Particular attention to circumstances of Aboriginal offenders (Gladue principles)</li>
                   </ul>
