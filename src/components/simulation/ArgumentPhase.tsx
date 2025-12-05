@@ -4,13 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useSimulation } from '@/contexts/SimulationContext';
-import { RUBRIC_CRITERIA, SIMULATION_CONFIG, CONTENT_PLACEHOLDERS } from '@/config/simulation-config';
-import { FileEdit, CheckCircle2, Circle } from 'lucide-react';
+import { RUBRIC_CRITERIA, SIMULATION_CONFIG } from '@/config/simulation-config';
+import { FileEdit, CheckCircle2, Circle, UserCheck } from 'lucide-react';
 
 export const ArgumentPhase = () => {
   const { submitArgument, advancePhase } = useSimulation();
   const [argumentText, setArgumentText] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [showPrincipalFeedback, setShowPrincipalFeedback] = useState(false);
   const [rubricResults, setRubricResults] = useState<Array<{ criterion: typeof RUBRIC_CRITERIA[0]; met: boolean }>>([]);
 
   const wordCount = argumentText.trim().split(/\s+/).filter(Boolean).length;
@@ -32,6 +33,10 @@ export const ArgumentPhase = () => {
     setSubmitted(true);
   };
 
+  const handleContinueToPrincipalFeedback = () => {
+    setShowPrincipalFeedback(true);
+  };
+
   const totalPossible = RUBRIC_CRITERIA.reduce((sum, c) => sum + c.points, 0);
   const earnedScore = rubricResults.reduce((sum, r) => sum + (r.met ? r.criterion.points : 0), 0);
 
@@ -39,14 +44,14 @@ export const ArgumentPhase = () => {
     <div className="min-h-screen p-4 md:p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl md:text-4xl font-serif font-semibold">Sentencing Submission</h1>
+          <h1 className="text-3xl md:text-4xl font-serif font-semibold">Sentencing Memorandum for Review</h1>
           <p className="text-muted-foreground">Draft Your Argument for Eden Littlecrow</p>
         </div>
 
         <Card className="bg-secondary/10 border-secondary/30">
           <CardContent className="pt-6">
             <p className="text-sm leading-relaxed">
-              Based on your interview with Eden and your analysis of the sentencing factors, draft a sentencing submission that addresses her Indigenous background and applies Gladue principles. Your submission should reference relevant Criminal Code provisions and propose an appropriate sentence.
+              Based on your interview with Eden and your analysis of the sentencing factors, draft a sentencing memorandum to your supervising lawyer (principal). Your memo should explain how Eden's Indigenous background engages Gladue principles, reference the relevant Criminal Code sentencing provisions, and recommend an appropriate sentence. You are not addressing the court directly. You are advising your principal and justifying your proposed approach.
             </p>
           </CardContent>
         </Card>
@@ -56,7 +61,7 @@ export const ArgumentPhase = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileEdit className="w-5 h-5" />
-                Your Sentencing Submission
+                Your Sentencing Memorandum to Principal
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -64,9 +69,13 @@ export const ArgumentPhase = () => {
                 <Textarea
                   value={argumentText}
                   onChange={(e) => setArgumentText(e.target.value)}
-                  placeholder="Your Honour, on behalf of my client Eden Littlecrow, I submit that..."
+                  placeholder="Dear [Principal's Name],
+
+Re: R. v. Littlecrow – Sentencing Submissions
+
+Based on my interview with Ms. Littlecrow and review of the disclosure, I recommend..."
                   className="min-h-[400px] font-sans text-sm leading-relaxed"
-                  aria-label="Sentencing submission text"
+                  aria-label="Sentencing memorandum text"
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
                   <span>
@@ -80,7 +89,7 @@ export const ArgumentPhase = () => {
 
               <Alert>
                 <AlertDescription className="text-xs">
-                  <strong>Tips:</strong> Reference s. 718.2(e) and Gladue principles. Discuss Eden's background including intergenerational trauma. Propose a culturally appropriate sentence. Consider restorative approaches.
+                  <strong>Tips:</strong> In your memo to your principal, reference s. 718.2(e) and Gladue principles. Discuss Eden's background including intergenerational trauma. Recommend a culturally appropriate sentence. Consider restorative approaches and explain your reasoning.
                 </AlertDescription>
               </Alert>
 
@@ -90,11 +99,11 @@ export const ArgumentPhase = () => {
                 size="lg"
                 className="w-full"
               >
-                Submit Argument
+                Submit Memorandum
               </Button>
             </CardContent>
           </Card>
-        ) : (
+        ) : !showPrincipalFeedback ? (
           <div className="space-y-4">
             <Card className="border-primary bg-primary/5">
               <CardHeader>
@@ -126,6 +135,32 @@ export const ArgumentPhase = () => {
                     </div>
                   ))}
                 </div>
+              </CardContent>
+            </Card>
+
+            <Button
+              onClick={handleContinueToPrincipalFeedback}
+              size="lg"
+              className="w-full"
+            >
+              Continue to Principal's Feedback
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            <Card className="border-secondary bg-secondary/5">
+              <CardHeader>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                    <UserCheck className="w-5 h-5 text-secondary" />
+                  </div>
+                  <CardTitle>Principal's Feedback on Your Draft</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  Thank you for this draft. You identified several important Gladue and mitigating factors and proposed a sentence that considers Ms. Littlecrow's Indigenous background and rehabilitation. In a final version, I would like to see an even clearer connection between the facts you describe and the specific wording of s. 718 and s. 718.2(e), and a more explicit explanation of why your recommended sentence advances both reconciliation and public safety. I will refine this draft and present the final submissions to the court.
+                </p>
               </CardContent>
             </Card>
 
