@@ -1,7 +1,7 @@
 import { MCQQuestion, LegalFactor, RubricCriterion, Badge } from '@/types/simulation';
 
 export const SIMULATION_CONFIG = {
-  title: "R. v. Littlecrow - Sentencing Simulation",
+  title: "Case Study",
   version: "1.0",
   scormVersion: "1.2",
   
