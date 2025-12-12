@@ -104,11 +104,14 @@ export const DecisionPhase = () => {
 
           <Card className="shadow-medium">
             <CardContent className="pt-6">
-              <div className="aspect-video bg-muted rounded-lg flex items-center justify-center border-2 border-border mb-4">
-                <div className="text-center space-y-3 p-6">
-                  <Scale className="w-12 h-12 mx-auto text-muted-foreground/50" />
-                  <p className="text-xs text-muted-foreground">[Video placeholder: Judge delivering sentence]</p>
-                </div>
+              <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/EYexYD_VMjw?start=8"
+                  title="Judge's Decision - R. v. Littlecrow"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
             </CardContent>
           </Card>
