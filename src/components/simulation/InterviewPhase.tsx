@@ -5,9 +5,13 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useSimulation } from '@/contexts/SimulationContext';
-import { INTERVIEW_QUESTIONS, CONTENT_PLACEHOLDERS } from '@/config/simulation-config';
+import { INTERVIEW_QUESTIONS } from '@/config/simulation-config';
 import { CheckCircle2, XCircle } from 'lucide-react';
-import { VideoPlayer } from './VideoPlayer';
+
+const INTERVIEW_VIDEOS = [
+  'https://www.youtube.com/embed/vfvLH2bCYGs',
+  'https://www.youtube.com/embed/EAqfoFvDQxs',
+];
 
 export const InterviewPhase = () => {
   const { recordInterviewChoice, advancePhase } = useSimulation();
@@ -18,18 +22,6 @@ export const InterviewPhase = () => {
 
   const currentQuestion = INTERVIEW_QUESTIONS[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === INTERVIEW_QUESTIONS.length - 1;
-  
-  // Get pause points from questions
-  const pausePoints = INTERVIEW_QUESTIONS.map(q => q.pauseTime);
-  
-  const handlePausePoint = (time: number) => {
-    // Find which question corresponds to this pause time
-    const questionIndex = INTERVIEW_QUESTIONS.findIndex(q => q.pauseTime === time);
-    if (questionIndex !== -1 && questionIndex === currentQuestionIndex) {
-      // Already at the correct question
-      return;
-    }
-  };
 
   const handleSubmitChoice = () => {
     const option = currentQuestion.options.find(opt => opt.id === selectedOption);
@@ -75,13 +67,15 @@ export const InterviewPhase = () => {
             </p>
           </CardHeader>
           <CardContent className="space-y-4">
-            <VideoPlayer
-              src={CONTENT_PLACEHOLDERS.clientVideoUrl}
-              captionSrc={CONTENT_PLACEHOLDERS.clientCaptions}
-              pausePoints={pausePoints}
-              onPausePoint={handlePausePoint}
-              isInteractionActive={!showFeedback && selectedOption === ''}
-            />
+            <div className="aspect-video rounded-lg overflow-hidden">
+              <iframe
+                className="w-full h-full"
+                src={INTERVIEW_VIDEOS[currentQuestionIndex] || INTERVIEW_VIDEOS[0]}
+                title={`Client Interview - Question ${currentQuestionIndex + 1}`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
             
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
               <div className="flex gap-1">
