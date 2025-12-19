@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { AlertTriangle, Scale } from 'lucide-react';
-import { useSimulation } from '@/contexts/SimulationContext';
-import { SIMULATION_CONFIG, CONTENT_PLACEHOLDERS } from '@/config/simulation-config';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertTriangle, Scale } from "lucide-react";
+import { useSimulation } from "@/contexts/SimulationContext";
+import { SIMULATION_CONFIG, CONTENT_PLACEHOLDERS } from "@/config/simulation-config";
 
 export const StartScreen = () => {
   const { advancePhase } = useSimulation();
@@ -20,7 +20,7 @@ export const StartScreen = () => {
             An Interactive Learning Experience in Indigenous Criminal Law
           </CardDescription>
         </CardHeader>
-        
+
         <CardContent className="space-y-6">
           <Alert className="border-warning bg-warning/5">
             <AlertTriangle className="h-4 w-4 text-warning" />
@@ -32,7 +32,7 @@ export const StartScreen = () => {
           <div className="space-y-4 text-foreground/90">
             <h3 className="font-semibold text-lg">Learning Objectives</h3>
             <ul className="space-y-2 list-disc list-inside text-sm">
-              <li>Practice trauma-informed, culturally sensitive client interviewing</li>
+              <li>Practice trauma-informed, and grounded in respect for identity and lived experiences</li>
               <li>Identify and apply Gladue principles under s. 718.2(e) of the Criminal Code</li>
               <li>Distinguish between Gladue factors, aggravating factors, and mitigating factors</li>
               <li>Draft a sentencing submission incorporating Indigenous perspectives</li>
@@ -49,7 +49,9 @@ export const StartScreen = () => {
                 </div>
                 <div>
                   <p className="font-medium">Client Interview</p>
-                  <p className="text-muted-foreground">Meet Eden and make culturally informed choices</p>
+                  <p className="text-muted-foreground">
+                    Meet Eden and make choices informed by her background and lived experiences
+                  </p>
                 </div>
               </div>
               <div className="flex gap-3">
@@ -82,14 +84,10 @@ export const StartScreen = () => {
             </div>
           </div>
 
-          <Button 
-            onClick={() => advancePhase('introduction')} 
-            size="lg" 
-            className="w-full"
-          >
+          <Button onClick={() => advancePhase("introduction")} size="lg" className="w-full">
             Begin Simulation
           </Button>
-          
+
           <p className="text-xs text-center text-muted-foreground">
             This simulation is non-graded and designed for experiential learning
           </p>
