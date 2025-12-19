@@ -45,6 +45,17 @@ jobs:
         with:
           path: dist
 
+      # Build SCORM package
+      - name: Build SCORM Package
+        run: node scripts/build-scorm.js
+
+      - name: Upload SCORM Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: scorm-package
+          path: scorm-package.zip
+          retention-days: 30
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
