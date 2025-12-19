@@ -230,7 +230,7 @@ export const DecisionPhase = () => {
 
             <div className="grid gap-3">
               <div className="flex justify-between items-center p-3 bg-card rounded-lg border">
-                <span className="text-sm font-medium">Cultural Sensitivity</span>
+                <span className="text-sm font-medium">Client-centered Awareness</span>
                 <span className="text-sm font-bold">{state.scores.culturalSensitivity} pts</span>
               </div>
               <div className="flex justify-between items-center p-3 bg-card rounded-lg border">
