@@ -6,7 +6,7 @@ export const SIMULATION_CONFIG = {
   scormVersion: "1.2",
 
   scoring: {
-    respectfulPracticeWeight: 0.3,
+    culturalSensitivityWeight: 0.3,
     legalAnalysisWeight: 0.35,
     argumentQualityWeight: 0.35,
     factorPointsCorrect: 5,
@@ -19,7 +19,7 @@ export const SIMULATION_CONFIG = {
       name: "Respectful Practice Advocate",
       description: "Demonstrated exceptional trauma-informed and client-centered approach",
       threshold: 18,
-      scoreType: "respectfulPractice" as const,
+      scoreType: "culturalSensitivity" as const,
       icon: "🌟",
     },
     {
